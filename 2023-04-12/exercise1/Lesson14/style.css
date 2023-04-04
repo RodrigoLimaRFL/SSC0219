@@ -1,0 +1,9 @@
+* {font-size: 100%;}
+
+@font-face {
+    font-family: 'alex_brushregular';
+    src: url('alexbrush-regular-webfont.woff2') format('woff2'),
+         url('alexbrush-regular-webfont.woff') format('woff');
+}
+
+#content {font-family: alex_brushregular; font-size: 4em;}

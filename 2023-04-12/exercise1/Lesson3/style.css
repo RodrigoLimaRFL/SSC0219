@@ -1,0 +1,13 @@
+*{margin:0; padding:0px; color:royalblue}
+
+h1 {color:aqua; font-size:60px;}
+p {color:brown; font-size:20px;}
+
+input[type="text"]{width:300px; background-color: beige; height: 60px; border: none;}
+input[name="email"]{width:200px; background-color: rgb(158, 217, 231); height: 40px; border: none;}
+input[type="submit"]{width:100px; background-color: grey; height: 30px; border: none; color:white; cursor:pointer;}
+
+/* Aula 01
+h1{color:darkgoldenrod; font-size: 60px; font-family: cursive;}
+*/
+

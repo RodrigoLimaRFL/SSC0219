@@ -1,0 +1,11 @@
+.content {background-color: darkgreen; width: 600px;}
+.box1{background-color: firebrick; height: 300px; width:150px; float:left}
+.box2{background-color: khaki; height: 300px; width:150px; float: right;}
+.content::before, .content::after{
+    content: '';
+    display: table;
+}
+
+.content::after{
+    clear: both
+}

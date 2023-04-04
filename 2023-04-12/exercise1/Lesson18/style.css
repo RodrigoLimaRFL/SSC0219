@@ -1,0 +1,3 @@
+#base {background-color: cadetblue; height: 500px; width:500px}
+#left {background-color: blue; height: 250px; width:250px; float:left}
+#right {background-color: sienna; height: 250px; width:250px; float: right}

@@ -1,0 +1,7 @@
+:root {
+    --bg-color: green;
+    --text-color: gold;
+    --padding: 30px;
+}
+
+#content1 {background-color: var(--bg-color); color: var(--text-color); padding: var(--padding);}

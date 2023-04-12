@@ -1,0 +1,63 @@
+body {
+    background-color: lightgrey;
+}
+
+
+.text-center {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.text-center h1{
+    color:blue;
+}
+
+.text-center h3{
+    color:grey;
+}
+
+.text-center p{
+    color:grey;
+    font-size:large;
+    line-height: 2em;
+}
+
+.text-center strong{
+    color:black;
+}
+
+.card.text-center{
+    width: 40%;
+    margin:3em auto 3em auto;
+    padding: 1em 1em 1em 1em;
+    background-color: white;
+}
+
+.img-circle {
+    max-width:50%;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid red;
+}
+
+.list-inline {
+    padding: 0px;
+    margin: 0px;
+
+}
+
+.list-inline li {
+    display: inline-block;
+    padding: 5%;
+}
+
+a {
+    font-size: large;
+    color: grey;
+    text-decoration: none;
+}
+
+#movies img {
+    width: 10em;
+}

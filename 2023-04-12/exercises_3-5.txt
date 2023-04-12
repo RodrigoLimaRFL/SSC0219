@@ -1,0 +1,3 @@
+3- While padding is defined by being an external spacing, meaning it exists outside the border of the object, margin is defined by being an internal spacing, meaning it exists inside the border of the object.
+4- Although it is possible to define different side paddings by explictly reffering to each side (padding-left, padding-right, padding-top, padding-bottom), the best way to specify different sizes for each padding side is to simply use the "padding" property, followed by four parameters separated by spaces. Each parameter sets a value for a different side, with the first one being padding-top and then going clockwise after it.
+5- Assuming you have 2 classes .class1 and .class2, the correct selector would be ".class1.class2".

@@ -1,0 +1,84 @@
+<!--
+    Rodrigo de Freitas Lima - 12547510
+    Igor Cardozo Martins - 10387515
+-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> todo </title>
+        <meta charset="utf-8">
+        <style>
+            body {background-color:darkgrey;}
+            #title {text-align: center;}
+            #mainDiv {margin: auto; width: 50%; border-color: red; border-style:solid; background-color: antiquewhite;}
+            #task {margin: 10px auto; display:block; height: 25px;}
+            #add {margin: 10px auto; display: block; height: 30px; width: 60px; background-color: greenyellow;}
+            .delete {background-color: red; color: white; margin-left: 10px;}
+            .uncomplete {color: black; margin: 5px;}
+            .complete {color: green; margin:5px}
+        </style>
+    </head>
+
+    <body>
+        <div id="mainDiv">
+            <h1 id="title"> To-Do List </h1>
+            <input type="text" id="task">
+            <input type="button" id="add" class="task" onclick="add();" value="Add"> <br>
+            <ul id="list"></ul>
+        </div>
+    </body>
+
+    <script>
+        let addBtn = document.getElementById("add");
+        let textInput = document.getElementById("task");
+        let unorderedlist = document.getElementById("list");
+        let listItems = [];
+        let i = 0;
+        let deleteBtn = [];
+
+        function add() {
+            let index = i;
+            listItems[index] = document.createElement("li");
+            listItems[index].setAttribute("id", "list" + index);
+            listItems[index].innerHTML = textInput.value;
+            listItems[index].classList.add("uncomplete");
+            listItems[index].onclick = function() {
+                changeClass(listItems[index]);
+            };
+
+            deleteBtn[index] = document.createElement("input");
+            deleteBtn[index].type = "button";
+            deleteBtn[index].classList.add("delete");
+            deleteBtn[index].value = "Delete";
+            deleteBtn[index].onclick = function() {
+                deleteItem(listItems[index], deleteBtn[index]);
+            };
+
+            unorderedlist.appendChild(listItems[index]);
+            listItems[index].appendChild(deleteBtn[index]);
+
+            i++;
+        }       
+
+        function deleteItem(item, btn)
+        {
+            item.parentNode.removeChild(item);
+            btn.parentNode.removeChild(btn);
+        }
+
+        function changeClass(item)
+        {
+            if(item.className === "uncomplete")
+            {
+                item.className = "complete";
+            }
+            else if(item.className === "complete")
+            {
+                item.className = "uncomplete";
+            }
+        }
+
+    </script>
+</html>

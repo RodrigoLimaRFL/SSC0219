@@ -1,0 +1,149 @@
+<!--
+    Rodrigo de Freitas Lima - 12547510
+    Igor Cardozo Martins - 10387515
+-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Quiz</title>
+
+        <style>
+
+            body {background-color:darkgrey;}
+            #questions {padding: 10px;}
+            #answer-buttons {padding: 20px;}
+            .next-button {padding: 10px;}
+            .submit-button {padding: 10px;}
+            .answer {padding: 0px 10px;}
+            .progress {padding: 10px;}
+
+        </style>
+
+        <meta charset="utf-8">
+
+    </head>
+    <body>
+        <div id="questions">
+
+            <p id="question"> Show do Milhão: </p>
+
+        </div>
+        <div id="answer-buttons">
+            
+            <button class="answer"> 1 </button>
+            <button class="answer"> 2 </button>
+            <button class="answer"> 3 </button>
+            <button class="answer"> 4 </button>
+
+        </div>
+        <button id="next-button">Next question</button>
+        <button id="submit-button">Submit</button>
+
+        <div id="progress">
+
+            Question <span id="current-question">1</span> of <span id="total-questions">5</span>
+
+        </div>
+
+        <script>
+            "use strict";
+
+            class Question 
+            {
+                constructor(question, answers, correctAnswer)
+                {
+                    this.question = question;
+                    this.answers = answers;
+                    this.correctAnswer = correctAnswer;
+                }
+
+                getQuestion()
+                {
+                    return this.question;
+                }
+
+                getAnswers()
+                {
+                    return this.answers;
+                }
+
+                getCorrectAnswer()
+                {
+                    return this.correctAnswer;
+                }
+            }
+
+            let questions = 
+            [
+                new Question("When Brazil became independent?", ["1889", "1822", "1500", "1887"], "1822"),
+                new Question("What is the only country with 5 World Cups?", ["Brazil", "France", "Argentina", "Congo"], "Brazil"),
+                new Question("Who is the owner of SBT", ["Tim Maia", "Roberto Marinho", "Ratinho", "Silvio Santos"], "Silvio Santos"),
+                new Question("What is the greatest university in São Carlos", ["USP", "Federal", "UFSCAR", "Federalzinha"], "USP"),
+            ];
+
+            let totalQuestionsText = document.getElementById("total-questions");
+            let nextButton = document.getElementById("next-button");
+            let answerButtons = document.querySelectorAll(".answer");
+            let currentQuestionText = document.getElementById("current-question");
+            let submitButton = document.getElementById("submit-button");
+            let questionText = document.getElementById("question");
+
+            let currentQuestion = 0;
+            let userAnswers = [];
+
+            displayQuestion();
+            updateProgress();
+
+            answerButtons.forEach((answerButton, i) => 
+            {
+                answerButton.addEventListener("click", () => 
+                {
+                    userAnswers[currentQuestion] = i;
+                });
+            });
+
+            nextButton.addEventListener("click", () => 
+            {
+                currentQuestion++;
+                if (questions.length > currentQuestion) {
+                    displayQuestion();
+                    updateProgress();
+                } else {
+                    nextButton.style.display = 'none';
+                }
+            });
+
+            submitButton.addEventListener("click", () => 
+            {
+                let score = 0;
+                for (let i = 0; i < currentQuestion+1; i++) 
+                {
+                    if (questions[i].getAnswers()[userAnswers[i]] === questions[i].getCorrectAnswer()) {
+                    score++;
+                    }
+                }
+            alert("Score: " + score + " out of " + questions.length);
+            });
+
+            function displayQuestion() 
+            {
+                let question = questions[currentQuestion];
+
+                questionText.textContent = question.getQuestion();
+
+                answerButtons.forEach((answerButton, i) => 
+                {
+                    answerButton.textContent = question.getAnswers()[i];
+                });
+            }
+
+            function updateProgress() 
+            {
+                currentQuestionText.textContent = currentQuestion + 1;
+                totalQuestionsText.textContent = questions.length;
+            }
+        </script>
+    </body>
+</html>

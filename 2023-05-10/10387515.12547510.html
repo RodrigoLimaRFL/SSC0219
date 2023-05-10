@@ -2,11 +2,11 @@
 
 <html>
     <head>
-        <title>Chuco Norris</title>
+        <title>K K K K K K K K K K K</title>
         <meta charset="UTF-8">
         <style>
             body {
-                background-color: #969696;
+                background-color: rgb(171, 255, 255);
             }
             #div1 {
                 margin: 0 auto;
@@ -17,7 +17,7 @@
                 width: 500px;
                 text-align: center;
                 background-color: white;
-                padding: auto 20px;
+                padding: 0px;
             }
             #getJoke {
                 padding: 10px;
@@ -44,6 +44,7 @@
 
             let button = document.getElementById("getJoke");
             let jokeElement = document.getElementById("joke");
+            let jokeDiv = document.getElementById("div2");
             
 
             button.addEventListener("click", function() {
@@ -52,13 +53,19 @@
 
             function getJoke()
             {
-                fetch("https://api.chucknorris.io/jokes/random")
+                fetch("https://v2.jokeapi.dev/joke/Any")
                     .then(function(response) {
                         return response.json();
                     })
                     .then(function(data) {
+                        jokeElement.innerHTML = "";
+                        jokeDiv.style.padding = "15px";
                         jokeElement.style.color = "black";
-                        jokeElement.innerHTML = data.value;
+
+                        if(data.joke != undefined)
+                            jokeElement.innerHTML = data.joke;
+                        else
+                            jokeElement.innerHTML = data.setup + "<br><br>" + data.delivery;
                     })
                     .catch(function(error) {
                         console.error(error);

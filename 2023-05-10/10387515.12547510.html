@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Chuco Norris</title>
+        <meta charset="UTF-8">
+        <style>
+            body {
+                background-color: #969696;
+            }
+            #div1 {
+                margin: 0 auto;
+                text-align: center;
+            }
+            #div2 {
+                margin: 0 auto;
+                width: 500px;
+                text-align: center;
+                background-color: white;
+                padding: auto 20px;
+            }
+            #getJoke {
+                padding: 10px;
+                font-size: 30px;
+            }
+            #joke {
+                color: black;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id = "div1">
+            <button id="getJoke"> Get Joke </button>
+        </div>
+        <br>
+        <div id = "div2">
+            <p id="joke"> </p>
+        </div>
+
+        <script>
+            "use strict";
+
+            let button = document.getElementById("getJoke");
+            let jokeElement = document.getElementById("joke");
+            
+
+            button.addEventListener("click", function() {
+                getJoke();
+            });
+
+            function getJoke()
+            {
+                fetch("https://api.chucknorris.io/jokes/random")
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        jokeElement.style.color = "black";
+                        jokeElement.innerHTML = data.value;
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                        jokeElement.innerHTML = error.message;
+                        jokeElement.style.color = "red";
+                    });
+            }
+        </script>
+    </body>
+</html>

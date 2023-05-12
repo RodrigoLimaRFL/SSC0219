@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title></title>
+
+        <style>
+            body
+            {
+                background-color: lightblue;
+            }
+
+            #weatherDisplay
+            {
+                width: 500px;
+                height: 400px;
+                margin: 0 auto;
+                padding: 10px;
+                text-align: center;
+                background-color: lightgray;
+            }
+
+            #weatherImg
+            {
+                width: 200px;
+                height: 200px;
+            }
+
+            #latlonginput
+            {
+                background-color: beige;
+                width: 500px;
+                margin: 0 auto;
+                font-size: large;
+                text-align: center;
+                padding: 10px;
+            }
+
+            button
+            {
+                font-size: large;
+            }
+
+            #latitudelongitudeTXT
+            {
+                font-size: 2em;
+            }
+
+            #tempTXT
+            {
+                font-size: 2em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="latlonginput">
+            Latitude: <input type="text" id="lat"> <br>
+            Longitude: <input type="text" id="long"> <br>
+            <button id="getWeather">Get Weather</button>
+        </div>
+
+        <div id="weatherDisplay">
+            <p id="latitudelongitudeTXT">  </p>
+            <p id="tempTXT"> </p>
+
+            <img id="weatherImg" src="" alt="">
+        </div>
+
+        <script>
+            "use strict";
+
+            let latitude = document.getElementById("lat");
+            let longitude = document.getElementById("long");
+            let button = document.getElementById("getWeather");
+            let weatherDisplay = document.getElementById("weatherDisplay");
+            let latitudeAndLongitudeTXT = document.getElementById("latitudelongitudeTXT");
+            let weatherImg = document.getElementById("weatherImg");
+            let tempTXT = document.getElementById("tempTXT");
+
+            button.addEventListener("click", function() {
+                getWeather();
+            });
+
+            let temp, condition;
+
+            function getWeather()
+            {
+                fetch("http://api.open-meteo.com/v1/forecast?latitude=" + latitude.value + "&longitude=" + longitude.value + "&current_weather=true")
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        temp = data.current_weather.temperature;
+                        condition = data.current_weather.weathercode;
+
+                        latitudeAndLongitudeTXT.innerHTML = "Latitude: " + latitude.value + " Longitude: " + longitude.value;
+                        tempTXT.innerHTML = "Temperature: " + temp + "°C";
+
+                        if(condition == 1 || condition == 2)
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/01d@2x.png";
+                        }
+                        else if (3 <= condition && condition<=48)
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/03d@2x.png";
+                        }
+                        else
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/10d@2x.png";
+                        }
+                    })
+                    .catch(function(error) {
+                        alert("Something went wrong! :(")
+                        console.log(error);
+                    });
+            }
+
+        </script>
+    </body>
+</html>

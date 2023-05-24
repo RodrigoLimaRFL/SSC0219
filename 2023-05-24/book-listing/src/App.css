@@ -1,0 +1,18 @@
+.container-fluid {
+  margin: 0 auto;
+  max-width: 600px;
+  background-color: whitesmoke;
+}
+
+.form-group {
+  text-align: center;
+}
+
+.form-control {
+  width: 550px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}

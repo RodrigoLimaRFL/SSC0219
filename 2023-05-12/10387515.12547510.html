@@ -112,6 +112,24 @@
                             weatherImg.src = "http://openweathermap.org/img/wn/10d@2x.png";
                         }
                     })
+                    .then(function(data) {
+                        temp = data.current_weather.temperature;
+                        condition = data.current_weather.weathercode;
+
+
+                        if(condition == 1 || condition == 2)
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/01d@2x.png";
+                        }
+                        else if (3 <= condition && condition<=48)
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/03d@2x.png";
+                        }
+                        else
+                        {
+                            weatherImg.src = "http://openweathermap.org/img/wn/10d@2x.png";
+                        }
+                    })
                     .catch(function(error) {
                         alert("Something went wrong! :(")
                         console.log(error);

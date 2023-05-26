@@ -1,0 +1,8 @@
+.result-container{
+    width: 575px;
+    height: 50px;
+    border-radius: 1px;
+    border-color: black;
+    border-style: solid;
+    margin: 0 auto 4px;
+}
